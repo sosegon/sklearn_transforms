@@ -45,7 +45,7 @@ class ScaleColumns(BaseEstimator, TransformerMixin):
         
         return data_5
 
-class Inputer(self):
+class Inputer(BaseEstimator, TransformerMixin):
     def __init__(self):
         pass
 
