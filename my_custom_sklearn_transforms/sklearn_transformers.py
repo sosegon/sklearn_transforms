@@ -1,7 +1,6 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import StandardScaler
-
-
+from sklearn.impute import SimpleImputer
 
 # All sklearn Transforms must have the `transform` and `fit` methods
 class DropColumns(BaseEstimator, TransformerMixin):
@@ -45,3 +44,28 @@ class ScaleColumns(BaseEstimator, TransformerMixin):
         data_5 = data_4.join(data_3)
         
         return data_5
+
+class Inputer(self):
+    def __init__(self):
+        pass
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        si = SimpleImputer(
+            missing_values=np.nan,  # los valores que faltan son del tipo ``np.nan`` (Pandas estándar)
+            strategy='most_frequent',  # la estrategia elegida es cambiar el valor faltante por una constante
+            fill_value=0,  # la constante que se usará para completar los valores faltantes es un int64 = 0
+            verbose=0,
+            copy=True
+        )
+
+        si.fit(X)
+
+        data = pd.DataFrame.from_records(
+            data=si.transform(X),
+            columns=X.columns
+        )
+
+        return data
