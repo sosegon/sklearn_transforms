@@ -47,9 +47,9 @@ class ScaleColumns(BaseEstimator, TransformerMixin):
         
         return data_5
 
-class Inputer(BaseEstimator, TransformerMixin):
+class CustomInputer(BaseEstimator, TransformerMixin):
     def __init__(self):
-        return self
+        pass
 
     def fit(self, X, y=None):
         return self
